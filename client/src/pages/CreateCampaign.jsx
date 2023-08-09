@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
 import { money } from "../assets";
 import { checkIfImage } from "../utils";
-import { CustomButton } from "../components";
+import { CustomButton, FormField } from "../components";
 const CreateCampaign = () => {
    const navigate = useNavigate();
    const [isLoading, setisLoading] = useState(false);
@@ -15,6 +15,8 @@ const CreateCampaign = () => {
       description: "",
       image: "",
    });
+
+   const handeleSubmit = () => {};
    return (
       <div className="bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] sm:p-4">
          {isLoading && "Loader.."}
@@ -23,6 +25,35 @@ const CreateCampaign = () => {
                Start a Campaign 🚀
             </h1>
          </div>
+
+         <form
+            onSubmit={handeleSubmit}
+            className="w-full mt-[65px] flex flex-col gap-[30px]"
+         >
+            <div className="flex flex-wrap gap-[40px] ">
+               <FormField
+                  labelName="Your Name*"
+                  placeholder="Type ypur name"
+                  inputType="text"
+                  value={form.name}
+                  handeleChange={() => {}}
+               />
+               <FormField
+                  labelName="Campaign Title*"
+                  placeholder="Write a Title"
+                  inputType="text"
+                  value={form.title}
+                  handeleChange={() => {}}
+               />
+            </div>
+            <FormField
+               labelName="Story*"
+               placeholder="Write your story"
+               isTextArea
+               value={form.title}
+               handeleChange={() => {}}
+            />
+         </form>
       </div>
    );
 };
