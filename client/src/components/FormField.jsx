@@ -4,7 +4,7 @@ const FormField = ({
    labelName,
    placeholder,
    value,
-   handleChange,
+   onChange,
    inputType,
    isTextArea,
 }) => {
@@ -17,20 +17,22 @@ const FormField = ({
          )}
          {isTextArea ? (
             <textarea
+               required
                className="rounded-[10px] sm:min-w-[300px] py-[15px] sm:px-[25px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-[14px] placeholder:text-[#4b5264] text-white "
-               inputType={inputType}
+               type={inputType}
                value={value}
                placeholder={placeholder}
-               onChange={handleChange}
+               onChange={onChange}
                rows="10"
             />
          ) : (
             <input
+               required
                className="rounded-[10px] sm:min-w-[300px] py-[15px] sm:px-[25px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-[14px] placeholder:text-[#4b5264] text-white "
-               inputType={inputType}
+               type={inputType}
                value={value}
                placeholder={placeholder}
-               onChange={handleChange}
+               onChange={onChange}
                step="0.1"
             />
          )}
