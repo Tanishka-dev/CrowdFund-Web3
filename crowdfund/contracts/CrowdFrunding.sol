@@ -18,7 +18,7 @@ contract CrowdFunding {
    uint256 public numberOfCampaigns=0;
 
    function createCampaign(address _owner, string memory _title, string memory _description,
-   uint256 _target, uint256 _deadline, uint256 _amountCollected, string memory _image) public 
+   uint256 _target, uint256 _deadline, string memory _image) public 
    returns(uint256){
     Campaign storage campaign= campaigns[numberOfCampaigns];
 
@@ -29,7 +29,7 @@ contract CrowdFunding {
     campaign.description= _description;
     campaign.target= _target;
     campaign.deadline= _deadline;
-    campaign.amountCollected=_amountCollected;
+    campaign.amountCollected=0;
     campaign.image= _image;
 
     numberOfCampaigns++;

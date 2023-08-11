@@ -39,11 +39,11 @@ module.exports = {
             runs: 200,
          },
       },
-      defaultNetwork: "sepoli",
+      defaultNetwork: "sepolia",
       networks: {
          hardhat: {},
-         sepoli: {
-            url: [`${process.env.SEPOLI_URL}`],
+         sepolia: {
+            url: [`${process.env.SEPOLIA_URL}`],
             accounts: [`0x${process.env.PRIVATE_KEY}`],
          },
       },

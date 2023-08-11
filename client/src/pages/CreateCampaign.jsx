@@ -4,9 +4,11 @@ import { ethers } from "ethers";
 import { money } from "../assets";
 import { checkIfImage } from "../utils";
 import { CustomButton, FormField } from "../components";
+import { useStateContext } from "../context";
 const CreateCampaign = () => {
    const navigate = useNavigate();
    const [isLoading, setisLoading] = useState(false);
+   const { createCampaign } = useStateContext();
    const [form, setform] = useState({
       name: "",
       deadline: "",
@@ -18,7 +20,20 @@ const CreateCampaign = () => {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(form);
+      checkIfImage(form.image, async (exists) => {
+         if (exists) {
+            setisLoading(true);
+            await createCampaign({
+               ...form,
+               target: ethers.utils.parseUnits(form.target, 18),
+            }); // converting format of target eth to make it compatible
+            setisLoading(false);
+            navigate("/");
+         } else {
+            alert("Provide valid image URL");
+            setform({ ...form, image: "" }); //clearing url
+         }
+      });
    };
    const handeleChangeField = (fieldName, e) => {
       setform({ ...form, [fieldName]: e.target.value });
