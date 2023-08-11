@@ -11,7 +11,7 @@ const StateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
    const { contract } = useContract(
-      "0x6E93DADA32C6BBe5b5cf16aa7754A67AAE729e95"
+      "0xde2e5966d9C63736dc5e8e6AE07E781D071eEFf7"
    ); //creating contract with id of sepolia
 
    const { mutateAsync: createCampaign } = useContractWrite(
@@ -34,11 +34,28 @@ export const StateContextProvider = ({ children }) => {
                form.image,
             ],
          });
-
-         console.log("done", data);
       } catch (error) {
          console.log(error);
       }
+   };
+
+   const getCampaigns = async () => {
+      const campaigns = await contract.call("getCampaigns", []);
+
+      const parsedCampaigns = campaigns.map((campaign) => ({
+         owner: campaign.owner,
+         title: campaign.title,
+         description: campaign.description,
+         target: ethers.utils.formatEther(campaign.target.toString()),
+         deadline: campaign.deadline.toNumber(),
+         amountCollected: ethers.utils.formatEther(
+            campaign.amountCollected.toString()
+         ),
+         image: campaign.image,
+      }));
+      console.log(parsedCampaigns);
+
+      return parsedCampaigns;
    };
 
    return (
@@ -48,6 +65,7 @@ export const StateContextProvider = ({ children }) => {
             contract,
             connect,
             createCampaign: publishCampaign,
+            getCampaigns,
          }}
       >
          {children}
