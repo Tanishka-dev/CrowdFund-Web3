@@ -36,7 +36,7 @@ const NavBar = () => {
                }}
             />
 
-            <Link>
+            <Link to="/profile">
                <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
                   <img
                      alt="user"
@@ -51,7 +51,7 @@ const NavBar = () => {
             <div className="w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32] flex justify-center items-center cursor-pointer">
                <img
                   alt="user"
-                  src={thirdweb}
+                  src={logo}
                   className="w-[60%] h-[60%] object-contain"
                />
             </div>
