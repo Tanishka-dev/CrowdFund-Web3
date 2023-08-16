@@ -13,6 +13,8 @@ const CampaignDetails = () => {
    const { state } = useLocation();
    const { getDonations, address, contract } = useStateContext();
    const remainingDays = daysLeft(state.deadline);
+
+   const handleDonate = () => {};
    return (
       <div>
          {isLoading && "Loading..."}
@@ -98,6 +100,43 @@ const CampaignDetails = () => {
                            No donators yet. Be the first one!
                         </p>
                      )}
+                  </div>
+               </div>
+            </div>
+
+            <div className="flex-1">
+               <h4 className="font-epilogue font-semibold text-[18px] text-white ">
+                  FUND
+               </h4>
+               <div className="mt-[20px] flex flex-col p-4 bg-[#1c1c24] rounded-[10px]">
+                  <h4 className="font-epilogue font-normal text-[16px] leading-[30px] text-center text-[#808191] ">
+                     Fund the campaign
+                  </h4>
+                  <div className="mt-[20px]">
+                     <input
+                        type="number"
+                        className="w-full py-[10px] sm:px-[20px] px-[15px] border-[#3a3a43] bg-transparent text-white text-[18px] leading-[30px] placeholder:text-[#4b5264] rounded-[10px] outline-none border-[1px]"
+                        placeholder="ETH 0.1"
+                        step="0.01"
+                        value={amount}
+                        onChange={(e) => setamount(e.target.value)}
+                     />
+
+                     <div className="my-[20px] p-4 bg-[#13131a] rounded-[10px]">
+                        <h4 className="font-epilogue font-semibold text-[14px] leading-[22px] text-white ">
+                           Back it because you believe in it.
+                        </h4>
+                        <h4 className=" mt-[10px]font-epilogue font-semibold text-[14px] leading-[22px] text-[#808191] ">
+                           Support the project for no reward, just beacuse it
+                           speaks to you.
+                        </h4>
+                     </div>
+                     <CustomButton
+                        title="Fund Campaign"
+                        btnType="button"
+                        styles="w-full bg-[#8c6dfd]"
+                        handleClick={handleDonate}
+                     />
                   </div>
                </div>
             </div>

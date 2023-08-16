@@ -89,7 +89,7 @@ const CreateCampaign = () => {
                <FormField
                   labelName="Goal *"
                   placeholder="Eth 0.50"
-                  inputType="text"
+                  inputType="number"
                   value={form.target}
                   onChange={(e) => handeleChangeField("target", e)}
                />
