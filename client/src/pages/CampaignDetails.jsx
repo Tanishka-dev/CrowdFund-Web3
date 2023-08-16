@@ -1,20 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { thirdweb } from "../assets";
 import { daysLeft, calculateBarPercentage } from "../utils";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useStateContext } from "../context";
 import { CustomButton, CountBox } from "../components";
 
 const CampaignDetails = () => {
+   const navigate = useNavigate();
    const [isLoading, setisLoading] = useState(false);
    const [amount, setamount] = useState("");
    const [donators, setdonators] = useState([]);
    const { state } = useLocation();
-   const { getDonations, address, contract } = useStateContext();
+   const { donate, getDonations, address, contract } = useStateContext();
    const remainingDays = daysLeft(state.deadline);
 
-   const handleDonate = () => {};
+   const fetchDonators = async () => {
+      const data = await getDonations(state.pId);
+      console.log(data);
+
+      setdonators(data);
+   };
+
+   useEffect(() => {
+      if (contract) fetchDonators();
+   }, [contract, address]);
+
+   const handleDonate = async () => {
+      setisLoading(true);
+
+      await donate(state.pId, amount);
+
+      navigate("/");
+      setisLoading(false);
+   };
+
+   console.log(state.pId);
    return (
       <div>
          {isLoading && "Loading..."}
@@ -85,8 +106,11 @@ const CampaignDetails = () => {
                   </h4>
                   <div className="mt-[5px] flex flex-col gap-4">
                      {donators.length > 0 ? (
-                        donators.map((irem, index) => (
-                           <div>
+                        donators.map((item, index) => (
+                           <div
+                              key={`${item.donator}-${index}`}
+                              className="flex justify-between items-center gap-4"
+                           >
                               <p className="font-epilogue font-normal text-[14px] break-all leading-[26px] text-justify text-[#b2b3bd]">
                                  {index + 1}.{item.donator}
                               </p>
