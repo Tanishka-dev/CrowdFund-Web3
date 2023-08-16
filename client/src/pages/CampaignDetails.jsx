@@ -4,7 +4,7 @@ import { thirdweb } from "../assets";
 import { daysLeft, calculateBarPercentage } from "../utils";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useStateContext } from "../context";
-import { CustomButton, CountBox } from "../components";
+import { CustomButton, CountBox, Loader } from "../components";
 
 const CampaignDetails = () => {
    const navigate = useNavigate();
@@ -38,7 +38,7 @@ const CampaignDetails = () => {
    console.log(state.pId);
    return (
       <div>
-         {isLoading && "Loading..."}
+         {isLoading && <Loader />}
          <div className="w-full flex md:flex-row flex-col mt-10 gap-[30px]">
             <div className="flex-1 flex-col">
                <img

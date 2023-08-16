@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
 import { money } from "../assets";
 import { checkIfImage } from "../utils";
-import { CustomButton, FormField } from "../components";
+import { CustomButton, FormField, Loader } from "../components";
 import { useStateContext } from "../context";
 const CreateCampaign = () => {
    const navigate = useNavigate();
@@ -40,7 +40,7 @@ const CreateCampaign = () => {
    };
    return (
       <div className="bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] sm:p-4">
-         {isLoading && "Loader.."}
+         {isLoading && <Loader />}
          <div className="bg-[#3a3a43] flex justify-center items-center p-[16px] sm:min-w-[380px] rounded-[10px]">
             <h1 className="text-white font-epilogue font-bold text-[18px] sm:text-[25px] leading-[38px] ">
                Start a Campaign 🚀
