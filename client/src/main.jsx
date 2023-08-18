@@ -6,6 +6,8 @@ import App from "./App";
 import "./index.css";
 import { StateContextProvider } from "./context";
 import { Sepolia } from "@thirdweb-dev/chains";
+import store from "./store";
+import { Provider } from "react-redux";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
@@ -15,7 +17,9 @@ root.render(
    >
       <Router>
          <StateContextProvider>
-            <App />
+            <Provider store={store}>
+               <App />
+            </Provider>
          </StateContextProvider>
       </Router>
    </ThirdwebProvider>

@@ -16,8 +16,6 @@ const Profile = () => {
    useEffect(() => {
       if (contract) fetchCampaigns();
    }, [address, contract]);
-
-   console.log(isLoading);
    return (
       <DisplayCampaigns
          title="All Campaigns"

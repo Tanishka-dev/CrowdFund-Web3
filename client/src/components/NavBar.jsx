@@ -4,11 +4,14 @@ import { logo, search, menu, thirdweb } from "../assets";
 import { navlinks } from "../constants";
 import { useStateContext } from "../context";
 import CustomButton from "./CustomButton";
+import { useDispatch, useSelector } from "react-redux";
+
 const NavBar = () => {
    const navigate = useNavigate();
    const [toggleDrawer, settoggleDrawer] = useState(false);
    const [isActive, setisActive] = useState("dashboard");
    const { address, connect } = useStateContext();
+   console.log(useSelector((state) => state.isDark));
    return (
       <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
          <div className="lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px]">

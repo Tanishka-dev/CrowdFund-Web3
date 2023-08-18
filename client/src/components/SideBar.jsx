@@ -3,10 +3,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { logo, sun } from "../assets";
 import { navlinks } from "../constants";
-import { useDispatch } from "react-redux";
-import { setTheme } from "../reducer";
+import { useDispatch, useSelector } from "react-redux";
+import { setTheme, theme } from "../store";
 const Icon = ({ styles, imgUrl, name, isActive, handleClick, isDark }) => {
-   console.log(isDark);
    return (
       <div
          className={`w-[48px] h-[48px] rounded-[10px] cursor-pointer  ${
@@ -33,6 +32,7 @@ const SideBar = () => {
    const [isActive, setisActive] = useState("dashboard"); //dashboard is active by default
    const [isDark, setisDark] = useState(true);
    const dispatch = useDispatch();
+   console.log(useSelector(theme));
    return (
       <div className="flex justify-between items-center flex-col sticky top-5 h-[93vh]">
          <Link to="/">
@@ -71,7 +71,7 @@ const SideBar = () => {
                imgUrl={sun}
                handleClick={() => {
                   setisDark((prev) => !prev);
-                  dispatch(setTheme(isDark));
+                  dispatch(setTheme());
                }}
                isDark={isDark}
             />
