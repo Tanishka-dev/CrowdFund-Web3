@@ -4,12 +4,7 @@ export const navlinks = [
    {
       name: "dashboard",
       imgUrl: dashboard,
-      link: "/dashboard",
-   },
-   {
-      name: "logout",
-      imgUrl: logout,
-      link: "/logout",
+      link: "/",
    },
    {
       name: "profile",

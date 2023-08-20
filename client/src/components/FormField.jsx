@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const FormField = ({
    labelName,
@@ -8,6 +9,7 @@ const FormField = ({
    inputType,
    isTextArea,
 }) => {
+   const isDark = useSelector((state) => state.value);
    return (
       <label className="flex-1 width-full flex flex-col">
          {labelName && (
@@ -18,7 +20,9 @@ const FormField = ({
          {isTextArea ? (
             <textarea
                required
-               className="rounded-[10px] sm:min-w-[300px] py-[15px] sm:px-[25px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-[14px] placeholder:text-[#4b5264] text-white "
+               className={`rounded-[10px] sm:min-w-[300px] py-[15px] sm:px-[25px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-[14px] placeholder:text-[#4b5264] ${
+                  isDark ? ` text-white` : ` text-[#4b5264]`
+               } `}
                type={inputType}
                value={value}
                placeholder={placeholder}
@@ -28,7 +32,9 @@ const FormField = ({
          ) : (
             <input
                required
-               className="rounded-[10px] sm:min-w-[300px] py-[15px] sm:px-[25px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-[14px] placeholder:text-[#4b5264] text-white "
+               className={`rounded-[10px] sm:min-w-[300px] py-[15px] sm:px-[25px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-[14px] placeholder:text-[#4b5264]${
+                  isDark ? ` text-white` : ` text-[#4b5264]`
+               } `}
                type={inputType}
                value={value}
                placeholder={placeholder}

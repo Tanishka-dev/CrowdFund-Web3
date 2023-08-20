@@ -5,8 +5,10 @@ import { money } from "../assets";
 import { checkIfImage } from "../utils";
 import { CustomButton, FormField, Loader } from "../components";
 import { useStateContext } from "../context";
+import { useSelector } from "react-redux";
 const CreateCampaign = () => {
    const navigate = useNavigate();
+   const isDark = useSelector((state) => state.value);
    const [isLoading, setisLoading] = useState(false);
    const { createCampaign } = useStateContext();
    const [form, setform] = useState({
@@ -39,10 +41,22 @@ const CreateCampaign = () => {
       setform({ ...form, [fieldName]: e.target.value });
    };
    return (
-      <div className="bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] sm:p-4">
+      <div
+         className={` ${
+            isDark ? `bg-[#1c1c24]` : `bg-[#ECECF1]`
+         } flex justify-center items-center flex-col rounded-[10px] sm:p-4`}
+      >
          {isLoading && <Loader />}
-         <div className="bg-[#3a3a43] flex justify-center items-center p-[16px] sm:min-w-[380px] rounded-[10px]">
-            <h1 className="text-white font-epilogue font-bold text-[18px] sm:text-[25px] leading-[38px] ">
+         <div
+            className={` ${
+               isDark ? `bg-[#3a3a43] ` : `bg-[#D9D9E3]`
+            } flex justify-center items-center p-[16px] sm:min-w-[380px] rounded-[10px]`}
+         >
+            <h1
+               className={` ${
+                  isDark ? `text-white` : `text-[#606779]`
+               } font-epilogue font-bold text-[18px] sm:text-[25px] leading-[38px]`}
+            >
                Start a Campaign 🚀
             </h1>
          </div>
@@ -54,7 +68,7 @@ const CreateCampaign = () => {
             <div className="flex flex-wrap gap-[40px] ">
                <FormField
                   labelName="Your Name *"
-                  placeholder="Type ypur name"
+                  placeholder="Type your name"
                   inputType="text"
                   value={form.name}
                   onChange={(e) => handeleChangeField("name", e)}

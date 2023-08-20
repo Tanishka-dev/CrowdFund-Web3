@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { logo, search, menu, thirdweb } from "../assets";
+import { logo, search, menu, web3 } from "../assets";
 import { navlinks } from "../constants";
 import { useStateContext } from "../context";
 import CustomButton from "./CustomButton";
@@ -11,14 +11,20 @@ const NavBar = () => {
    const [toggleDrawer, settoggleDrawer] = useState(false);
    const [isActive, setisActive] = useState("dashboard");
    const { address, connect } = useStateContext();
-   console.log(useSelector((state) => state.isDark));
+   const isDark = useSelector((state) => state.value);
    return (
       <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
-         <div className="lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px]">
+         <div
+            className={`lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] ${
+               isDark ? `bg-[#1c1c24]` : `bg-[#ECECF1]`
+            } rounded-[100px]`}
+         >
             <input
                type="text"
                placeholder="Search for campaigns"
-               className="flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] text-[#acacc0] bg-transparent outline-none"
+               className={`flex w-full font-epilogue font-normal text-[14px] placeholder:text-[#4b5264] ${
+                  isDark ? ` text-[#acacc0]` : ` text-[#808191]`
+               } bg-transparent outline-none`}
             />
             <div className="w-[72px] h-full rounded-[20px] bg-[#4acd8d] flex justify-center items-center cursor-pointer ">
                <img
@@ -43,7 +49,7 @@ const NavBar = () => {
                <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
                   <img
                      alt="user"
-                     src={thirdweb}
+                     src={web3}
                      className="w-[60%] h-[60%] object-contain"
                   />
                </div>
@@ -51,13 +57,6 @@ const NavBar = () => {
          </div>
          {/* Small screen navigation */}
          <div className="sm:hidden flex justify-between items-center relative">
-            <div className="w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32] flex justify-center items-center cursor-pointer">
-               <img
-                  alt="user"
-                  src={logo}
-                  className="w-[60%] h-[60%] object-contain"
-               />
-            </div>
             <img
                alt="menu"
                src={menu}

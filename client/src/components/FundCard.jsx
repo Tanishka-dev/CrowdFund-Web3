@@ -1,6 +1,7 @@
 import React from "react";
-import { tagType, thirdweb } from "../assets";
+import { tagType, web3 } from "../assets";
 import { daysLeft } from "../utils";
+import { useSelector } from "react-redux";
 const FundCard = ({
    owner,
    title,
@@ -12,9 +13,12 @@ const FundCard = ({
    handleClick,
 }) => {
    const remainingDays = daysLeft(deadline);
+   const isDark = useSelector((state) => state.value);
    return (
       <div
-         className="sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer"
+         className={` ${
+            isDark ? `bg-[#1c1c24]` : `bg-[#ECECF1]`
+         } sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer`}
          onClick={handleClick}
       >
          <img
@@ -36,7 +40,7 @@ const FundCard = ({
             </div>
 
             <div className="block">
-               <h3 className="text-white font-epilogue font-semibold text-[16px] text-left leading-[26px] truncate">
+               <h3 className="text-[#808191] font-epilogue font-semibold text-[16px] text-left leading-[26px] truncate">
                   {title}
                </h3>
                <p className="text-[#808191] mt-[5px] font-epilogue text-[12px] font-normal text-left leading-[18px] truncate">
@@ -66,7 +70,7 @@ const FundCard = ({
             <div className="flex items-center mt-[20px] gap-[12px]">
                <div className="w-[30px] h-[30px] rounded-full flex justify-center items-center bg-[#13131a]">
                   <img
-                     src={thirdweb}
+                     src={web3}
                      alt="user "
                      className="w-1/2 h-1/2 object-contain"
                   />

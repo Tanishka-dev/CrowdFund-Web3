@@ -17,7 +17,10 @@ export const themeSlice = createSlice({
 });
 
 export const { setTheme } = themeSlice.actions;
-export const theme = (state) => state.isDark;
+export const theme = (state) => {
+   state.isDark;
+   console.log(state.value);
+};
 export default configureStore({
    reducer: themeSlice.reducer,
 });
